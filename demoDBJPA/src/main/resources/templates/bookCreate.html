@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Create New Book</title>
+</head>
+<body>
+
+<form action="bookCreate" method ="post">
+
+  名稱:<input type="text" name="name"/><br/>
+
+
+  類別:<select name = "bookCategory">
+  <option th:each="bookCategory : ${allBookCategories}" 
+          th:value="${bookCategory.id}" 
+          th:text="${bookCategory.name}">商業</option>
+</select>
+庫存量:<input type="number" name ="inv"/><br/>
+安全存量:<input type="number" name ="Safeinv"/><br/>
+出版社:<input type="text" name ="press"/><br/>
+期數:<input type="number" name ="nop"/><br/>
+出版日期:<input type="number" name ="Date"/><br/>
+價格:<input type="number" name ="price"/><br/>
+ <input type="submit" value="Submit"/>
+  
+
+</form>
+
+</body>
+</html>

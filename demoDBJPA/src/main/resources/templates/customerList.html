@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>List All Customers</title>
+</head>
+<body>
+<a href="customerCreate">新增顧客</a>
+<table>
+	<tr>
+		<th>編號</th>
+		<th>姓名</th>
+		<th>地址</th>
+		<th>重量</th>
+		<th></th>
+	</tr>
+    <tr th:each="customer : ${allCustomers} " th:object="${customer}">
+        <td th:text="*{id}">1</td>
+        <td th:text="*{name}">Ben</td>
+        <td th:text="*{address}">Fu Jen</td>
+        <td th:text="*{weight}">56</td>
+        <td><a th:href="@{customerUpdate(id=*{id})}">修改</a> <a th:href="@{customerDelete(id=*{id})}">刪除</a></td>
+    </tr>
+</table>
+
+
+</body>
+</html>

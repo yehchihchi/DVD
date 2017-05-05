@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>List ALl Books</title>
+</head>
+<body>
+<form action="bookRetrieveByCategory" method ="post">
+  類別:<select name = "bookCategory" th:field="${bookCategory.id}" onchange="this.form.submit()">
+  <option th:each="bookCategory : ${allBookCategories}" 
+          th:value="${bookCategory.id}" 
+          th:text="${bookCategory.name}">商業</option>
+</select>
+ <input type="submit" value="Submit"/>
+ <input type="button" onclick="location.href='bookRetrieveAll'" value="Show All Books"/>
+</form>
+<input type="button" onclick="location.href='bookCreate'" value="新增書籍"/>
+<table>
+	<tr>
+		<th>編號</th>
+		<th>類別</th>
+		<th>名稱</th>
+		<th>庫存量</th>
+		<th>安全存量</th>
+		<th>出版社</th>
+		<th>期數</th>
+		<th>出版日期</th>								
+		<th>定價</th>
+		<th></th>
+	</tr>
+    <tr th:each="book : ${allBooks} " th:object="${book}">
+         <td th:text="*{id}">1</td>
+        <td th:text="*{bookCategory.name}">business</td>
+        <td th:text="*{name}">Ben</td>
+        <td th:text="*{price}">300</td>
+        <td th:text="*{inv}">1</td>
+        <td th:text="*{Safeinv}">1</td>
+        <td th:text="*{press}">1</td>
+        <td th:text="*{Nop}">1</td>
+        <td th:text="*{Date}">1</td>
+        <td><a th:href="@{bookUpdate(id=*{id})}">修改</a> <a th:href="@{bookDelete(id=*{id})}" onclick="return confirm('確定要刪除嗎?');">刪除</a></td>
+    </tr>
+</table>
+
+
+</body>
+</html>
